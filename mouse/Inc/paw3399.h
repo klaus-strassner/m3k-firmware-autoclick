@@ -281,12 +281,8 @@ static void paw3399_set_lod(const uint8_t lod)
 	ss_high();
 }
 
-static void paw3399_init(const Config cfg)
+static void paw3399_init()
 {
-	const uint16_t dpi = _FLD2VAL(CONFIG_DPI, cfg);
-	const uint8_t ang_snap = (cfg & CONFIG_ANGLE_SNAP_ON) ? 1 : 0;
-	const uint8_t lod = _FLD2VAL(CONFIG_LOD, cfg);
-
 	NRESET_GPIO_CLK_ENABLE();
 	__NOP();__NOP();__NOP();__NOP(); // probably unnecessary
 	MODIFY_REG(NRESET_PORT->MODER,
