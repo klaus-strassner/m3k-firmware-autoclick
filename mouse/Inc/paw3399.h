@@ -254,33 +254,6 @@ static void paw3399_spi2(void)
 	ss_high();
 }
 
-static void paw3399_set_dpi(const uint16_t dpi)
-{
-	ss_low();
-	spi_write(0x48, dpi & 0xff); // RESOLUTION_X_LOW
-	spi_write(0x49, dpi >> 8); // RESOLUTION_X_HIGH
-	spi_write(0x4A, dpi & 0xff); // RESOLUTION_Y_LOW
-	spi_write(0x4B, dpi >> 8); //RESOLUTION_Y_HIGH
-	spi_write(0x47, 0x01); // SET_RESOLUTION
-	ss_high();
-}
-
-static void paw3399_set_as(const uint8_t angle_snap)
-{
-	ss_low();
-	spi_write(0x56, (angle_snap << 7) | 0x0D);
-	ss_high();
-}
-
-static void paw3399_set_lod(const uint8_t lod)
-{
-	ss_low();
-	spi_write(0x7F, 0x0C);
-	spi_write(0x4E, 0x08 | lod);
-	spi_write(0x7F, 0x00);
-	ss_high();
-}
-
 static void paw3399_init()
 {
 	NRESET_GPIO_CLK_ENABLE();
@@ -349,10 +322,6 @@ static void paw3399_init()
 	ss_low();
 	spi_write(0x68, 0x01);
 	ss_high();
-
-	paw3399_set_dpi(dpi);
-	paw3399_set_as(ang_snap);
-	paw3399_set_lod(lod);
 
 	// invert x
 	ss_low();
