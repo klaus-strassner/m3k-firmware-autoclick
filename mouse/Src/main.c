@@ -45,7 +45,7 @@ int main(void) {
     // Timing Constants (Assuming 1ms SOF intervals)
     #define CLICK_INTERVAL_MS 500
     #define BUTTON_HOLD_MS    20
-    #define MAX_CLICKS        120
+    #define MAX_CLICKS        600
 
     #define MASK_LMB 0x01
     #define MASK_MMB 0x04
